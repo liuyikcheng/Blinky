@@ -7,6 +7,9 @@
       <target file="stm32f4xx_hal_gpio.o" lastModified="1504b5e3039">
          <source file="..\..\..\..\STM32Cube_FW_F4_V1.5.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c" lastModified="14df6c52dfb"/>
       </target>
+      <target file="system_stm32f4xx.o" lastModified="1506f2a10e8">
+         <source file="..\..\..\app\system_stm32f4xx.c" lastModified="14df6c79fb2"/>
+      </target>
       <target file="stm32f4xx_hal_rcc.o" lastModified="1504b887908">
          <source file="..\..\..\..\STM32Cube_FW_F4_V1.5.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c" lastModified="14df6c52f01"/>
       </target>
