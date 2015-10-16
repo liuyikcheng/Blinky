@@ -1,17 +1,25 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_hal_gpio.h"
+#include "GPIO.h"
 
-void configurePort(GPIO_TypeDef *port, uint32_t pinNumber){
-	GPIO_InitTypeDef gpio;
-	gpio.Pin = pinNumber;
-	gpio.Mode = GPIO_MODE_OUTPUT_PP;
-	gpio.Speed = GPIO_SPEED_MEDIUM;
-	HAL_GPIO_Init(port, &gpio);
+void delay(uint32_t delayCount){
+	while(delayCount != 0){
+		delayCount--;
+	}
 }
 
 int main(void)
 {
-	int a = 4;
+	configurePin(GPIO_OUTPUT, GPIO_PIN_13, GPIOG);
+
+	while(1){
+	writeOne(GPIO_PIN_13, GPIOG);
+	delay(500000);
+	writeZero(GPIO_PIN_13, GPIOG);
+	delay(500000);
+	}
+
+/*	int a = 4;
 	double d = 5.6789123;
 
 	d = d * a + 1.987656321;
@@ -22,5 +30,5 @@ int main(void)
     {
 		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(GPIOG, GPIO_PIN_13, GPIO_PIN_RESET);
-    }
+    }*/
 }
