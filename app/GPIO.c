@@ -6,9 +6,11 @@ void configurePin(int direction, int pinNumber, GPIO_TypeDef *port){
 
 	__HAL_RCC_GPIOG_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	int *ptr = (int*)0x40021800;
 	int *ptrB = (int*)0x40020400;
+	int *ptrC = (int*)0x40020800;
 
 	ptr[0] = 0x14000000;				// MODE.pin14 = output
 	ptr[1] = 0;							// OTYPE.pin14 = push-pull
@@ -16,9 +18,11 @@ void configurePin(int direction, int pinNumber, GPIO_TypeDef *port){
 
 	ptrB[0] = 0x04000000;
 	ptrB[1] = 0;
-	ptrB[2] = 0x20000000;
+	ptrB[2] = 0x08000000;
 
-
+	ptrC[0] = 0x00000400;
+	ptrC[1] = 0;
+	ptrC[2] = 0x00000800;
 //	gpio.Pin = pinNumber;
 //	gpio.Mode = direction;
 //	gpio.Speed = GPIO_SPEED_MEDIUM;
