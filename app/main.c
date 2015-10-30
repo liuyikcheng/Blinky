@@ -10,22 +10,25 @@ void delay(uint32_t delayCount){
 
 int main(void)
 {
-
+	int a = 0;
 	configurePin(GPIO_MODE_OUTPUT, PIN_14, PORTG);
 	configurePin(GPIO_MODE_OUTPUT, PIN_13, PORTG);
+	configureInputPin(PIN_0, PORTA, GPIO_PULL_DOWN);
 //	configurePin(GPIO_OUTPUT, GPIO_PIN_13, GPIOB);
 //	configurePin(GPIO_OUTPUT, GPIO_PIN_5, GPIOC);
 	while(1){
-	writeOne(GPIO_PIN_14, GPIOG);
-	writeOne(GPIO_PIN_13, GPIOG);
+	if(((PORTA->IDR)&1) == 1){
+		writeOne(PIN_13, GPIOG);
+		writeOne(PIN_14, GPIOG);
 //	writeOne(GPIO_PIN_13, GPIOB);
-//	writeOne(GPIO_PIN_5, GPIOC);
-	delay(500000);
-	writeZero(GPIO_PIN_14, GPIOG);
-	writeZero(GPIO_PIN_13, GPIOG);
+//	writeOne(PIN_5, GPIOC);
+		delay(500000);
+		writeZero(PIN_14, GPIOG);
+		writeZero(PIN_13, GPIOG);
 //	writeZero(GPIO_PIN_13, GPIOB);
-//	writeZero(GPIO_PIN_5, GPIOC);
-	delay(500000);
+//	writeZero(PIN_5, GPIOC);
+		delay(500000);
+	}
 	}
 
 

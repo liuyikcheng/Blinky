@@ -21,24 +21,6 @@ struct GPIO_t{
 
 };
 
-typedef struct RCC_t RCC_REG;
-struct RCC_t{
-	uint32_t CR;
-	uint32_t PLLCFGR;
-	uint32_t CFGR;
-	uint32_t CIR;
-	uint32_t AHB1RSTR;
-	uint32_t AHB2RSTR;
-	uint32_t AHB3RSTR;
-	uint32_t Reserved1;
-	uint32_t APB1RSTR;
-	uint32_t APB2RSTR;
-	uint32_t Reserved2;
-	uint32_t Reserved3;
-	uint32_t AHB1ENR;
-};
-
-#define CLK_ENABLE
 
 #define PIN_0		0
 #define PIN_1		1
@@ -67,22 +49,26 @@ struct RCC_t{
 #define GPIO_HIGH_SPEED			2
 #define GPIO_VERY_HIGH_SPEED	3
 
-#define GPIOG_BASE_ADDRESS	0x40021800
-#define GPIOB_BASE_ADDRESS	0x40020400
-#define GPIOC_BASE_ADDRESS	0x40020800
+#define GPIO_NO_PULL_UP_DOWN	0
+#define GPIO_PULL_UP			1
+#define GPIO_PULL_DOWN			2
+#define GPIO_RESERVED			3
 
-#define PORTG	((GPIO *)GPIOG_BASE_ADDRESS)
+#define GPIOG_BASE_ADDRESS	0x40021800
+#define GPIOC_BASE_ADDRESS	0x40020800
+#define GPIOB_BASE_ADDRESS	0x40020400
+#define GPIOA_BASE_ADDRESS  0x40020000
+
+#define PORTA	((GPIO *)GPIOA_BASE_ADDRESS)
 #define PORTB	((GPIO *)GPIOB_BASE_ADDRESS)
 #define PORTC	((GPIO *)GPIOC_BASE_ADDRESS)
-
-#define RCC_REG_RESET_ADDRESS		0x40023810
-
-#define RCC_REG_RESET	((int *)RCC_REG_RESET_ADDRESS)
+#define PORTG	((GPIO *)GPIOG_BASE_ADDRESS)
 
 void configurePin(int mode, int pinNumber, GPIO *port);
+void configureInputPin(int pinNumber, GPIO *port, int pupdr);
 void gpioUnresetEnableClock(GPIO *port);
 
-void writeOne(int pinNumber, GPIO_TypeDef *port);
-void writeZero(int pinNumber, GPIO_TypeDef *port);
+void writeOne(uint16_t pinNumber, GPIO_TypeDef *port);
+void writeZero(uint16_t pinNumber, GPIO_TypeDef *port);
 
 #endif // __GPIO_H__
