@@ -17,7 +17,7 @@ int main(void)
 //	configurePin(GPIO_OUTPUT, GPIO_PIN_13, GPIOB);
 //	configurePin(GPIO_OUTPUT, GPIO_PIN_5, GPIOC);
 	while(1){
-	if(((PORTA->IDR)&1) == 1){
+	if(((PORTA->IDR)&1) == 0){
 		writeOne(PIN_13, GPIOG);
 		writeOne(PIN_14, GPIOG);
 //	writeOne(GPIO_PIN_13, GPIOB);
